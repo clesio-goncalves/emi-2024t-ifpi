@@ -1,0 +1,64 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block content %}
+
+<main class="main">
+
+  <!-- Starter Section Section -->
+  <section id="starter-section" class="starter-section section">
+
+    <div class="container" data-aos="fade-up">
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-primary">
+                    <th>ID</th>
+                    <th>Matrícula</th>
+                    <th>Nome</th>
+                    <th>Tefone</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for aluno in alunos %}
+                    <tr>
+                        <td>{{ aluno.id }}</td>
+                        <td>{{ aluno.matricula }}</td>
+                        <td>{{ aluno.nome }}</td>
+                        <td>{{ aluno.telefone }}</td>
+                        <td>
+                            {% if aluno.status %}
+                                <p class="text-success">Ativo</p>
+                            {% else %}
+                                <p class="text-danger">Inativo</p>
+                            {% endif %}
+                        </td>
+                        <td class="text-nowrap">
+                            <!--Exibir-->
+                            <a href="" class="btn btn-outline-info btn-sm" 
+                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Exibir"> 
+                              <i class="bi bi-eye"></i></a>
+    
+                            <!--Editar-->
+                            <a href="" class="btn btn-outline-warning btn-sm" 
+                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Editar"> 
+                              <i class="bi bi-pencil-square"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    
+        <br>
+    
+        <div class="text-center">
+            <a href="{% url 'aluno/cadastro' %}" class="btn btn-primary btn-lg">
+                <i class="bi bi-plus-circle"></i> Cadastrar</a>
+        </div>
+    </div>
+
+  </section><!-- /Starter Section Section -->
+
+</main>
+
+{% endblock %}
