@@ -19,3 +19,17 @@ def cadastro(request):
             return redirect("aluno/lista")
     
     return render(request, "aluno/cadastro.html", {"form": form})
+
+def edita(request, id):
+    aluno = Aluno.objects.get(id=id)
+    form = AlunoForms(instance=aluno)
+
+    if request.method == 'POST':
+        form = AlunoForms(request.POST, instance=aluno)
+
+        if form.is_valid():
+            form.save()
+            return redirect("aluno/lista")
+    
+    return render(request, "aluno/edita.html", 
+                  {"form": form, "aluno_id": id})
